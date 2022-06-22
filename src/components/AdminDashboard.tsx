@@ -6,7 +6,6 @@ import React, { useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Link } from "react-router-dom";
-import 'reactjs-popup/dist/index.css';
 import {UserContext, EventContextType, InterfaceEvent, InterfaceDoctor,DoctorContextType} from "../contexts/UserContext";
 
 
