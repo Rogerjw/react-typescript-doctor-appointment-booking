@@ -12,7 +12,6 @@ export default function DoctorsDetails(){
     const doctorUrl = "../BookAppointment/" + id;
     const image = doctors[index].profilePicture
     return(
-
     <div style={{paddingTop:"50px",paddingBottom:"30px"}}>
         <div style={{padding:"10px",maxWidth:"310px",margin:"auto"}} className="w3-border w3-round-xxlarge w3-white">
             <div className="w3-round-xxlarge" style={{maxWidth:"300px",margin:"auto"}}>

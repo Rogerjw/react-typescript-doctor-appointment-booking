@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 function App() {
   return (
     <UserContextProvider >
-      <div className="App w3-padding-large w3-large">
-        <Link to="/AdminDashboard" className='w3-tag' style={{textDecoration:"none", position:"absolute", bottom:"0",right:"24px"}}><p>Admin</p></Link>
+      <div className="App" style={{padding:"0px 20px 0px 20px"}}>
+       
         <DoctorList />
+        <Link to="/AdminDashboard" className='w3-tag' style={{textDecoration:"none", position:"absolute", bottom:"0",right:"20px"}}><p>Admin</p></Link>
       </div>
     </UserContextProvider>
   );

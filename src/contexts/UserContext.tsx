@@ -8,6 +8,7 @@ export interface InterfaceDoctor {
     phone: string;
 }
 export interface InterfaceEvent {
+    id: number | string;
     title: string | undefined;
     start: Date;
     end: Date;
@@ -35,4 +36,5 @@ export type SetEventType = {
 export type SetPatientType = {
     setPatients: React.Dispatch<React.SetStateAction<InterfacePatient | undefined>[]>
 }
-export const UserContext = React.createContext<DoctorContextType | EventContextType | PatientContextType | SetEventType | null>(null);
+export type handleCancelType = any;
+export const UserContext = React.createContext<DoctorContextType | EventContextType | PatientContextType | SetEventType | handleCancelType | null>(null);

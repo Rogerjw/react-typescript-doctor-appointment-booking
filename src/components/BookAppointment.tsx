@@ -1,15 +1,15 @@
 import React,{useContext,useState} from 'react';
 import DatePicker from "react-datepicker";
-import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
-import {UserContext, EventContextType, SetEventType,DoctorContextType,InterfaceDoctor, PatientContextType} from "../contexts/UserContext";
+import {UserContext, EventContextType, SetEventType,DoctorContextType,InterfaceDoctor} from "../contexts/UserContext";
 import { Link, useParams, Navigate } from "react-router-dom";
-import beyonce from "../beyonce.jpg";
+import beyonce from "../assets/beyonce.jpg";
 function BookAppointment() {
   const { events } = useContext(UserContext) as EventContextType;
   const { setEvents } = useContext(UserContext) as SetEventType;
   const { doctors } = React.useContext(UserContext) as DoctorContextType;
   const [newEvent, setNewEvent] = useState({
+    id: Math.random() * 10,
     title: "",
     start: new Date(),
     end: new Date(),
@@ -38,10 +38,26 @@ function BookAppointment() {
     newEvent.patient.email = email; 
     setEvents([...events, newEvent]);
     alert("successfully booked");
+    if(alert.arguments){
+      <Navigate to="../"></Navigate>
+    }
     
-    <Navigate to="../"></Navigate>
      
   };
+  function handleStartDate(start: Date){
+    var i: number;
+    for( i =0; i<events.length;i++){
+      if(events[i].start.getDate()===start.getDate()){
+        alert("Sorry! You can't book this one")
+        return;
+        setNewEvent(newEvent);
+        
+      }else{
+        setNewEvent({ ...newEvent, start })
+      }
+    }
+  }
+  
   
    return (
       <div className="App">
@@ -82,7 +98,7 @@ function BookAppointment() {
               type="email"/>
             <i className="fa fa-calendar" aria-hidden="true"></i>
             <label>  Start</label>
-            <DatePicker className="w3-input w3-margin-bottom" placeholderText="Start Date" selected={newEvent.start} onChange={(start: Date) => setNewEvent({ ...newEvent, start })} />
+            <DatePicker className="w3-input w3-margin-bottom" placeholderText="Start Date" selected={newEvent.start} onChange={handleStartDate} />
             <i className="fa fa-calendar" aria-hidden="true"></i>
             <label>  End</label>
             <DatePicker className="w3-input w3-margin-bottom" placeholderText="End Date" selected={newEvent.end} onChange={(end: Date) => setNewEvent({ ...newEvent, end })} />

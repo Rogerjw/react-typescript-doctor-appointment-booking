@@ -1,6 +1,5 @@
-import React, { useState, FC } from "react";
+import React, { useState } from "react";
 import { UserContext } from "./UserContext";
-import { InterfaceDoctor } from "./UserContext";
 
 type Props = {
     children?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
@@ -9,6 +8,7 @@ type Props = {
 const UserContextProvider: React.FC<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> = ({ children }: any) =>{
     const [events, setEvents] = useState([
         {
+            id:0,
             title: "Mark Musco",
             start: new Date(2022, 5, 18),
             end: new Date(2022, 5, 19),
@@ -71,11 +71,14 @@ const UserContextProvider: React.FC<React.DetailedHTMLProps<React.HTMLAttributes
             phone: "925-274-000"
         }
     ];
-    
+    function handleCancel(id: number){
+        setEvents(events.filter(event => event.id !== id));
+    }
     const value = {
         doctors,
         events,
-        setEvents
+        setEvents,
+        handleCancel
     };
 
     return (

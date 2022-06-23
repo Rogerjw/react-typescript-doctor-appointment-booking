@@ -30,6 +30,7 @@ function AdminDashboard() {
         setModalState(true)
     }
     const { doctors } = React.useContext(UserContext) as DoctorContextType;
+    const { handleCancel} = React.useContext(UserContext);
     const index = doctors.findIndex(
         (doctor: InterfaceDoctor) => doctor.name == selectedEvent?.title 
         )
@@ -38,9 +39,12 @@ function AdminDashboard() {
             <div className={`modal-${modalState == true ? 'show' : 'hide'}`} style={{marginRight:"10px"}}>
                 <h1 className=" w3-xxlarge">{selectedEvent?.start.getDate()+"/"+selectedEvent?.start.getMonth()+"/"+selectedEvent?.start.getFullYear()}</h1>
                 <div style={{display:"grid",gridTemplateRows:"1fr 60px 1fr"}}>
-                    <div style={{gridColumnStart:"1",gridColumnEnd:"-1"}} className="w3-bar w3-margin-top w3-white"> 
-                        <div style={{height:"70%"}} className="w3-padding">
-                            <p>Doctor</p>
+                    <div style={{boxShadow:"0 4px 2px -2px black"}} className="w3-bar w3-margin-top w3-white"> 
+                        <div className="w3-padding">
+                            
+                            <div><span>Doctor</span> <span onClick={(e) => {
+                                handleCancel(selectedEvent?.id); setModalState(false);
+                                }} className="w3-right w3-text-red" style={{cursor:"pointer"}}>Cancel Appoinment</span></div>
                             <img src={doctors[index].profilePicture}
                                 className="w3-bar-item w3-circle w3-hide-small" alt="shit">
                             </img>
@@ -53,13 +57,13 @@ function AdminDashboard() {
                         </div>
                         <div className="w3-text-grey w3-bar-item w3-padding" style={{width:"100%",marginTop:"auto",height:"30%",textAlign:"right"}}><span>Phone: {doctors[index].phone}</span>&nbsp; &nbsp; &nbsp; &nbsp;Fax: <span>{doctors[index].phone}</span></div>
                     </div> 
-                    <div style={{gridColumnStart:"1",gridColumnEnd:"-1"}}>
+                    <div>
                         <h1 className="w3-tag w3-green w3-text-white w3-round">Booked by <i className="fa fa-arrow-circle-o-down" aria-hidden="true"></i></h1>
                     </div>
-                    <div style={{gridColumnStart:"1",gridColumnEnd:"-1"}} className="w3-bar w3-margin-top w3-white"> 
-                        <div style={{height:"70%"}} className="w3-padding">
-                        <p>Patient</p>
-                        <i className="fa fa-user-circle w3-animate-zoom w3-left w3-bar-item" style={{fontSize:"60px",marginRight:"20px"}} aria-hidden="true"></i>
+                    <div style={{boxShadow:"0 4px 2px -2px black"}} className="w3-bar w3-margin-top w3-white"> 
+                        <div className="w3-padding">
+                            <div><span style={{marginRight:"130px"}}>Patient</span></div>
+                            <i className="fa fa-user-circle w3-animate-zoom w3-left w3-bar-item" style={{fontSize:"60px",marginRight:"20px"}} aria-hidden="true"></i>
                             <div className="w3-bar-item" style={{textAlign: "left"}}>
                             <b><span className="w3-xlarge">{selectedEvent?.patient.name} {selectedEvent?.patient.surname}</span><br></br></b>
                             <div className="w3-text-grey"><i>{selectedEvent?.patient.email}</i></div>
