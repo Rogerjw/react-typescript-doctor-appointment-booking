@@ -1,6 +1,6 @@
-# You can preview the site here
+# You can view the site here
 
-https://62b3b9983fcb451385d03317--meek-unicorn-c9bf72.netlify.app/AdminDashboard
+https://62b3b9983fcb451385d03317--meek-unicorn-c9bf72.netlify.app/
 
 # Getting Started with Create React App
 
