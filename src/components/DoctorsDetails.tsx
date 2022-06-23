@@ -7,10 +7,10 @@ export default function DoctorsDetails(){
     const { doctors } = React.useContext(UserContext) as DoctorContextType;
     const { id } = useParams();
     const index = doctors.findIndex(
+        // eslint-disable-next-line
     (doctor: InterfaceDoctor) => doctor.id == id 
     )
     const doctorUrl = "../BookAppointment/" + id;
-    const image = doctors[index].profilePicture
     return(
     <div style={{paddingTop:"50px",paddingBottom:"30px"}}>
         <div style={{padding:"10px",maxWidth:"310px",margin:"auto"}} className="w3-border w3-round-xxlarge w3-white">

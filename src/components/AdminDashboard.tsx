@@ -32,11 +32,12 @@ function AdminDashboard() {
     const { doctors } = React.useContext(UserContext) as DoctorContextType;
     const { handleCancel} = React.useContext(UserContext);
     const index = doctors.findIndex(
+        // eslint-disable-next-line
         (doctor: InterfaceDoctor) => doctor.name == selectedEvent?.title 
         )
     const Modal = () => {
         return (
-            <div className={`modal-${modalState == true ? 'show' : 'hide'}`} style={{marginRight:"10px"}}>
+            <div className={`modal-${modalState === true ? 'show' : 'hide'}`} style={{marginRight:"10px"}}>
                 <h1 className=" w3-xxlarge">{selectedEvent?.start.getDate()+"/"+selectedEvent?.start.getMonth()+"/"+selectedEvent?.start.getFullYear()}</h1>
                 <div style={{display:"grid",gridTemplateRows:"1fr 60px 1fr"}}>
                     <div style={{boxShadow:"0 4px 2px -2px black"}} className="w3-bar w3-margin-top w3-white"> 

@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { UserContext } from "./UserContext";
 
-type Props = {
-    children?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-};
-
 const UserContextProvider: React.FC<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> = ({ children }: any) =>{
     const [events, setEvents] = useState([
         {

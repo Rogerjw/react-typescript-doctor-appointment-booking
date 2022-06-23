@@ -1,6 +1,6 @@
-import React, {useContext} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import {UserContext, InterfaceDoctor} from "../contexts/UserContext";
+import {InterfaceDoctor} from "../contexts/UserContext";
 type doctorsProps = {
     doctor: InterfaceDoctor
 }

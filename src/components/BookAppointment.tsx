@@ -26,6 +26,7 @@ function BookAppointment() {
 
   const { id } = useParams();
     const index = doctors.findIndex(
+      // eslint-disable-next-line
     (doctor: InterfaceDoctor) => doctor.id == id 
     )
 
@@ -41,8 +42,6 @@ function BookAppointment() {
     if(alert.arguments){
       <Navigate to="../"></Navigate>
     }
-    
-     
   };
   function handleStartDate(start: Date){
     var i: number;
@@ -50,8 +49,6 @@ function BookAppointment() {
       if(events[i].start.getDate()===start.getDate()){
         alert("Sorry! You can't book this one")
         return;
-        setNewEvent(newEvent);
-        
       }else{
         setNewEvent({ ...newEvent, start })
       }
