@@ -2,6 +2,12 @@ import "../styles.css";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import beyonce from "../assets/beyonce.jpg";
+import bluemax from "../assets/bluemaex.jpg";
+import kanyewest from "../assets/kanyewest.jpg";
+import marin from "../assets/marin.ivankovic.jpg";
+import jxhannamadeleine from "../assets/jxhannamadeleine.jpg"
+import saschafirtina from "../assets/saschafirtina.jpg";
+import noImage from "../assets/NoImage.jpg"
 import {UserContext, InterfaceDoctor,DoctorContextType} from "../contexts/UserContext";
 export default function DoctorsDetails(){
     const { doctors } = React.useContext(UserContext) as DoctorContextType;
@@ -10,13 +16,32 @@ export default function DoctorsDetails(){
         // eslint-disable-next-line
     (doctor: InterfaceDoctor) => doctor.id == id 
     )
+    const pictures = [
+        beyonce,
+        bluemax,
+        kanyewest,
+        marin,
+        jxhannamadeleine,
+        saschafirtina,
+        noImage
+    ]
     const doctorUrl = "../BookAppointment/" + id;
+    var image=noImage;
+    var pictureName = doctors[index].profilePicture.split(/(\\|\/)/g).pop();
+    pictureName = pictureName?.replace(/\.[^.]+$/,'')
+    
+    // eslint-disable-next-line
+    pictures.map((key)=>{
+        if(key.includes(pictureName as string)){
+            image = key;
+        }
+    })
     return(
     <div style={{paddingTop:"50px",paddingBottom:"30px"}}>
         <div style={{padding:"10px",maxWidth:"310px",margin:"auto"}} className="w3-border w3-round-xxlarge w3-white">
             <div className="w3-round-xxlarge" style={{maxWidth:"300px",margin:"auto"}}>
                 <Link to="/"><p className="w3-padding"><i className="fa fa-arrow-left" aria-hidden="true"></i></p></Link>
-                <img src={beyonce} style={{width:"100%", height:"auto"}} alt="shit">
+                <img src={image} style={{width:"100%", height:"auto"}} alt="shit">
                 </img>
                 <div style={{width:"100%"}} className="w3-round-xxlarge">
                     <div className="w3-padding w3-light-grey">

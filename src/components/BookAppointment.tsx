@@ -4,10 +4,42 @@ import "react-datepicker/dist/react-datepicker.css";
 import {UserContext, EventContextType, SetEventType,DoctorContextType,InterfaceDoctor} from "../contexts/UserContext";
 import { Link, useParams, Navigate } from "react-router-dom";
 import beyonce from "../assets/beyonce.jpg";
+import bluemax from "../assets/bluemaex.jpg";
+import kanyewest from "../assets/kanyewest.jpg";
+import marin from "../assets/marin.ivankovic.jpg";
+import jxhannamadeleine from "../assets/jxhannamadeleine.jpg"
+import saschafirtina from "../assets/saschafirtina.jpg";
+import noImage from "../assets/NoImage.jpg"
+const pictures = [
+  beyonce,
+  bluemax,
+  kanyewest,
+  marin,
+  jxhannamadeleine,
+  saschafirtina,
+  noImage
+]
+
 function BookAppointment() {
   const { events } = useContext(UserContext) as EventContextType;
   const { setEvents } = useContext(UserContext) as SetEventType;
   const { doctors } = React.useContext(UserContext) as DoctorContextType;
+  const { id } = useParams();
+    const index = doctors.findIndex(
+      // eslint-disable-next-line
+    (doctor: InterfaceDoctor) => doctor.id == id 
+    )
+  var image=noImage;
+    var pictureName = doctors[index].profilePicture.split(/(\\|\/)/g).pop();
+    pictureName = pictureName?.replace(/\.[^.]+$/,'')
+    
+    // eslint-disable-next-line
+    pictures.map((key)=>{
+        if(key.includes(pictureName as string)){
+            image = key;
+        }
+    })
+
   const [newEvent, setNewEvent] = useState({
     id: Math.random() * 10,
     title: "",
@@ -24,11 +56,7 @@ function BookAppointment() {
   const [telephone,setTelephone] = useState("");
   const [email,setEmail] = useState("");
 
-  const { id } = useParams();
-    const index = doctors.findIndex(
-      // eslint-disable-next-line
-    (doctor: InterfaceDoctor) => doctor.id == id 
-    )
+  
 
   function handleSubmit (event:React.SyntheticEvent) {
     event.preventDefault();
@@ -65,7 +93,7 @@ function BookAppointment() {
           <Link to="/"><p className="w3-padding"><i className="w3-left fa fa-arrow-left" aria-hidden="true"> Back</i></p></Link>
           <div className="w3-margin-bottom">
             <div style={{border:"1px solid",minHeight:"100px"}}>
-            <img src={beyonce} className="w3-bar-item w3-circle w3-hide-small w3-padding" alt="shit">
+            <img src={image} className="w3-bar-item w3-circle w3-hide-small w3-padding" alt="shit">
                 </img>
               <p style={{display:"flex",flexDirection:"column"}}><h2>{doctors[index].name}</h2>{doctors[index].specialty}</p></div>
             
